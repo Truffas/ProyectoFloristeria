@@ -45,6 +45,7 @@ public class Ventana {
         frame.pack();
         frame.setVisible(true);
         frame.setLocationRelativeTo(null);
+        frame.setIconImage(new ImageIcon("src/flor.png").getImage());
 
         initComponents();
     }

@@ -50,8 +50,8 @@ public class FloristeriaControlador implements ActionListener, ListSelectionList
     private boolean hayCamposVacios() {
         if (vista.nombreTxt.getText().isEmpty() ||
                 vista.apellidosTxt.getText().isEmpty() ||
-                vista.floresTxt.getText().isEmpty()||
-                vista.datoExtraTxt.getText().isEmpty()||
+                vista.floresTxt.getText().isEmpty() ||
+                vista.datoExtraTxt.getText().isEmpty() ||
                 vista.fechaEntregaDPicker.getText().isEmpty() ||
                 //vista.direccionTxt.getText().isEmpty()||
                 vista.precioTxt.getText().isEmpty()) {
@@ -100,7 +100,7 @@ public class FloristeriaControlador implements ActionListener, ListSelectionList
     public void refrescar() {
         vista.dlmAdorno.clear();
         //modelo.obtenerVehiculos -> contiene la lista de vehiculos
-        for (Adorno unAdorno: modelo.obtenerPlantas()) {
+        for (Adorno unAdorno : modelo.obtenerPlantas()) {
             vista.dlmAdorno.addElement(unAdorno);
         }
     }
@@ -108,30 +108,30 @@ public class FloristeriaControlador implements ActionListener, ListSelectionList
     private void cargarDatosConfiguracion() throws IOException {
         Properties configuracion = new Properties();
         configuracion.load(new FileReader("plantas.conf"));
-        ultimaRutaExportada= new File(configuracion.getProperty("ultimaRutaExportada"));
+        ultimaRutaExportada = new File(configuracion.getProperty("ultimaRutaExportada"));
     }
 
     private void actualizarDatosConfiguracion(File ultimaRutaExportada) {
-        this.ultimaRutaExportada=ultimaRutaExportada;
+        this.ultimaRutaExportada = ultimaRutaExportada;
     }
 
     private void guardarConfiguracion() throws IOException {
-        Properties configuracion=new Properties();
+        Properties configuracion = new Properties();
         configuracion.setProperty("ultimaRutaExportada"
-                ,ultimaRutaExportada.getAbsolutePath());
+                , ultimaRutaExportada.getAbsolutePath());
         configuracion.store(new PrintWriter("plantas.conf")
-                ,"Datos configuracion adornos");
+                , "Datos configuracion adornos");
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
-        String actionCommand=e.getActionCommand();
+        String actionCommand = e.getActionCommand();
 
         switch (actionCommand) {
             case "Nuevo":
                 if (hayCamposVacios()) {
                     Util.mensajeError("Los siguientes campos no pueden estar vacíos: " +
-                            "\nNombre\nApellidos\nTipo de flores\n"+ vista.datoExtraLbl.getText() + "\n"+  vista.mensajeTarjetaLbl.getText() +
+                            "\nNombre\nApellidos\nTipo de flores\n" + vista.datoExtraLbl.getText() + "\n" + vista.mensajeTarjetaLbl.getText() +
                             "\nFecha de entrega\nPrecio");
                     break;
                 }
@@ -147,7 +147,16 @@ public class FloristeriaControlador implements ActionListener, ListSelectionList
                     } else if (vista.porEnvioRadioButton.isSelected()) {
                         lugarEntrega = "Por envío";
                     }
+
+                    double precio;
+                    int numFlores;
                     try {
+                        precio = Double.parseDouble(vista.precioTxt.getText());
+                        numFlores = Integer.parseInt(vista.datoExtraTxt.getText());
+                    } catch (NumberFormatException ex) {
+                        Util.mensajeError("Introduce valores válidos en Precio y " + vista.datoExtraLbl.getText());
+                        return;
+                    }
                         modelo.altaRamo(
                                 vista.nombreTxt.getText(),
                                 vista.apellidosTxt.getText(),
@@ -157,11 +166,9 @@ public class FloristeriaControlador implements ActionListener, ListSelectionList
                                 vista.fechaEntregaDPicker.getDate(),
                                 lugarEntrega,
                                 vista.direccionTxt.getText(),
-                                Double.parseDouble(vista.precioTxt.getText()),
-                                Integer.parseInt(vista.datoExtraTxt.getText()));
-                    }catch (Exception ex){
-                        
-                    }
+                                precio,
+                                numFlores);
+
                 } else if (vista.centroRadioButton.isSelected()) {
                     String lugarEntrega = "";
                     if (vista.enTiendaRadioButton.isSelected()) {
@@ -169,17 +176,24 @@ public class FloristeriaControlador implements ActionListener, ListSelectionList
                     } else if (vista.porEnvioRadioButton.isSelected()) {
                         lugarEntrega = "Por envío";
                     }
-                    modelo.altaCentro(
-                            vista.nombreTxt.getText(),
-                            vista.apellidosTxt.getText(),
-                            vista.ceremoniaComboBox.getSelectedItem().toString(),
-                            vista.floresTxt.getText(),
-                            vista.mensajeTarjetaTxt.getText(),
-                            vista.fechaEntregaDPicker.getDate(),
-                            lugarEntrega,
-                            vista.direccionTxt.getText(),
-                            Double.parseDouble(vista.precioTxt.getText()),
-                            vista.datoExtraTxt.getText());
+                    double precio;
+                    try {
+                        precio = Double.parseDouble(vista.precioTxt.getText());
+                    } catch (NumberFormatException ex) {
+                        Util.mensajeError("Introduce valores válidos en Precio");
+                        return;
+                    }
+                        modelo.altaCentro(
+                                vista.nombreTxt.getText(),
+                                vista.apellidosTxt.getText(),
+                                vista.ceremoniaComboBox.getSelectedItem().toString(),
+                                vista.floresTxt.getText(),
+                                vista.mensajeTarjetaTxt.getText(),
+                                vista.fechaEntregaDPicker.getDate(),
+                                lugarEntrega,
+                                vista.direccionTxt.getText(),
+                                precio,
+                                vista.datoExtraTxt.getText());
                 } else {
                     String lugarEntrega = "";
                     if (vista.enTiendaRadioButton.isSelected()) {
@@ -187,18 +201,26 @@ public class FloristeriaControlador implements ActionListener, ListSelectionList
                     } else if (vista.porEnvioRadioButton.isSelected()) {
                         lugarEntrega = "Por envío";
                     }
-                    modelo.altaCorona(
-                            vista.nombreTxt.getText(),
-                            vista.apellidosTxt.getText(),
-                            vista.ceremoniaComboBox.getSelectedItem().toString(),
-                            vista.floresTxt.getText(),
-                            vista.mensajeTarjetaTxt.getText(),
-                            vista.fechaEntregaDPicker.getDate(),
-                            lugarEntrega,
-                            vista.direccionTxt.getText(),
-                            Double.parseDouble(vista.precioTxt.getText()),
-                            Double.parseDouble(vista.datoExtraTxt.getText()));
-
+                    double precio;
+                    double diametro;
+                    try {
+                        precio = Double.parseDouble(vista.precioTxt.getText());
+                        diametro = Double.parseDouble(vista.datoExtraTxt.getText());
+                    } catch (NumberFormatException ex) {
+                        Util.mensajeError("Introduce valores válidos en Precio y " + vista.datoExtraLbl.getText());
+                        return;
+                    }
+                        modelo.altaCorona(
+                                vista.nombreTxt.getText(),
+                                vista.apellidosTxt.getText(),
+                                vista.ceremoniaComboBox.getSelectedItem().toString(),
+                                vista.floresTxt.getText(),
+                                vista.mensajeTarjetaTxt.getText(),
+                                vista.fechaEntregaDPicker.getDate(),
+                                lugarEntrega,
+                                vista.direccionTxt.getText(),
+                                precio,
+                                diametro);
                 }
                 limpiarCampos();
                 refrescar();
@@ -211,9 +233,9 @@ public class FloristeriaControlador implements ActionListener, ListSelectionList
                 break;
             case "Importar":
                 JFileChooser selectorFichero = Util.crearSelectorFichero(ultimaRutaExportada
-                        ,"Archivos XML","xml");
-                int opt =selectorFichero.showOpenDialog(null);
-                if (opt==JFileChooser.APPROVE_OPTION) {
+                        , "Archivos XML", "xml");
+                int opt = selectorFichero.showOpenDialog(null);
+                if (opt == JFileChooser.APPROVE_OPTION) {
                     try {
                         modelo.importarXML(selectorFichero.getSelectedFile());
                     } catch (ParserConfigurationException ex) {
@@ -231,10 +253,10 @@ public class FloristeriaControlador implements ActionListener, ListSelectionList
                 refrescar();
                 break;
             case "Exportar":
-                JFileChooser selectorFichero2=Util.crearSelectorFichero(ultimaRutaExportada
-                        ,"Archivos XML","xml");
-                int opt2=selectorFichero2.showSaveDialog(null);
-                if (opt2==JFileChooser.APPROVE_OPTION) {
+                JFileChooser selectorFichero2 = Util.crearSelectorFichero(ultimaRutaExportada
+                        , "Archivos XML", "xml");
+                int opt2 = selectorFichero2.showSaveDialog(null);
+                if (opt2 == JFileChooser.APPROVE_OPTION) {
                     try {
                         modelo.exportarXML(selectorFichero2.getSelectedFile());
                     } catch (ParserConfigurationException ex) {
@@ -267,7 +289,7 @@ public class FloristeriaControlador implements ActionListener, ListSelectionList
                 break;
             case "Modo oscuro":
                 try {
-                    if (!modoOscuro) {
+                    if (modoOscuro == false) {
                         UIManager.setLookAndFeel(new FlatDarkLaf());
                         modoOscuro = true;
                     } else {
@@ -286,8 +308,8 @@ public class FloristeriaControlador implements ActionListener, ListSelectionList
 
     @Override
     public void windowClosing(WindowEvent e) {
-        int resp= Util.mensajeConfirmacion("¿Desea cerrar la ventana?","Salir");
-        if (resp== JOptionPane.OK_OPTION) {
+        int resp = Util.mensajeConfirmacion("¿Desea cerrar la ventana?", "Salir");
+        if (resp == JOptionPane.OK_OPTION) {
             try {
                 guardarConfiguracion();
                 System.exit(0);
@@ -307,7 +329,7 @@ public class FloristeriaControlador implements ActionListener, ListSelectionList
             vista.floresTxt.setText(adornoSeleccionado.getTipoFlores());
             vista.mensajeTarjetaTxt.setText(adornoSeleccionado.getMensaje());
             vista.fechaEntregaDPicker.setDate(adornoSeleccionado.getFechaEntrega());
-            if (adornoSeleccionado.getLugarEntrega().equals("En tienda")){
+            if (adornoSeleccionado.getLugarEntrega().equals("En tienda")) {
                 vista.enTiendaRadioButton.doClick();
             } else {
                 vista.porEnvioRadioButton.doClick();
@@ -318,10 +340,10 @@ public class FloristeriaControlador implements ActionListener, ListSelectionList
             if (adornoSeleccionado instanceof Ramo) {
                 vista.ramoRadioButton.doClick();
                 vista.datoExtraTxt.setText(String.valueOf(((Ramo) adornoSeleccionado).getNumFlores()));
-            } else if (adornoSeleccionado instanceof Centro){
+            } if (adornoSeleccionado instanceof Centro) {
                 vista.centroRadioButton.doClick();
                 vista.datoExtraTxt.setText(((Centro) adornoSeleccionado).getTamanio());
-            } else {
+            } else if (adornoSeleccionado instanceof Corona){
                 vista.coronaRadioButton.doClick();
                 vista.datoExtraTxt.setText(String.valueOf(((Corona) adornoSeleccionado).getDiametro()));
             }
