@@ -311,7 +311,9 @@ public class FloristeriaControlador implements ActionListener, ListSelectionList
         if (resp == JOptionPane.OK_OPTION || resp == JOptionPane.YES_OPTION || resp == JOptionPane.CLOSED_OPTION) {
 
             try {
-                guardarConfiguracion();
+                if (ultimaRutaExportada != null) {  //Solo guardo si hay algo
+                    guardarConfiguracion();
+                }
             } catch (IOException ex) {
                 ex.printStackTrace();
             }

@@ -8,6 +8,9 @@
   <component name="ChangeListManager">
     <list default="true" id="0318d235-6cb0-46c6-ab7d-8c09a3f42902" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/artifacts/PlantasMVC_jar/PlantasMVC.jar" beforeDir="false" afterPath="$PROJECT_DIR$/out/artifacts/PlantasMVC_jar/PlantasMVC.jar" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PlantasMVC/com/sergiosr/plantasMVC/gui/FloristeriaControlador.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantasMVC/com/sergiosr/plantasMVC/gui/FloristeriaControlador.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/plantas.conf" beforeDir="false" afterPath="$PROJECT_DIR$/plantas.conf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/sergiosr/plantasMVC/gui/FloristeriaControlador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/sergiosr/plantasMVC/gui/FloristeriaControlador.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -109,7 +112,7 @@
       <workItem from="1762871835787" duration="8463000" />
       <workItem from="1762957280304" duration="14707000" />
       <workItem from="1763049100056" duration="7474000" />
-      <workItem from="1763141187946" duration="637000" />
+      <workItem from="1763141187946" duration="2779000" />
     </task>
     <servers />
   </component>
