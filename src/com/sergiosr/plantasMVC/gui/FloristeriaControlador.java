@@ -29,7 +29,6 @@ public class FloristeriaControlador implements ActionListener, ListSelectionList
     private Ventana vista;
     private FloristeriaModelo modelo;
     private File ultimaRutaExportada;
-    private boolean modoOscuro = false;
 
     public FloristeriaControlador(Ventana vista, FloristeriaModelo modelo) {
         this.vista = vista;
@@ -289,12 +288,10 @@ public class FloristeriaControlador implements ActionListener, ListSelectionList
                 break;
             case "Modo oscuro":
                 try {
-                    if (modoOscuro == false) {
+                    if (vista.nocheRadioButton.isSelected()) {
                         UIManager.setLookAndFeel(new FlatDarkLaf());
-                        modoOscuro = true;
                     } else {
                         UIManager.setLookAndFeel(new FlatLightLaf());
-                        modoOscuro = false;
                     }
                     //Con esto cambio el tema, pero no se actualiza automáticamente en las ventanas abiertas
                     // Actualizo la apariencia de todos los componentes Swing de la ventana abierta
