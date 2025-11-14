@@ -5,7 +5,7 @@ import com.sergiosr.plantasMVC.base.Adorno;
 
 import javax.swing.*;
 
-public class Ventana {
+public class Ventana extends JFrame{
     private JPanel panel1;
     public JRadioButton ramoRadioButton;
     public JRadioButton centroRadioButton;
@@ -33,22 +33,21 @@ public class Ventana {
     public JRadioButton nocheRadioButton;
     public JButton eliminarButton;
 
-    //declarado por mi
-    public JFrame frame;
     //para poner los datos de adornos en la lista
     public DefaultListModel<Adorno> dlmAdorno;
 
     public Ventana() {
-        frame = new JFrame("FloristeríaMVC");
-        frame.setContentPane(panel1);
-        frame.setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
-        frame.pack();
-        frame.setVisible(true);
-        frame.setLocationRelativeTo(null);
-        frame.setIconImage(new ImageIcon("src/flor.png").getImage());
+        setTitle("FloristeríaMVC");
+        setContentPane(panel1);
+        setDefaultCloseOperation(JFrame.DO_NOTHING_ON_CLOSE);
+        pack();
+        setLocationRelativeTo(null);
+        setIconImage(new ImageIcon(getClass().getResource("/flor.png")).getImage());
+        setVisible(true);
 
         initComponents();
     }
+
 
     public void initComponents(){
         dlmAdorno = new DefaultListModel<Adorno>();

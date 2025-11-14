@@ -89,7 +89,7 @@ public class FloristeriaControlador implements ActionListener, ListSelectionList
 
     //listener ventana (boton cerrar)
     private void addWindowListener(WindowListener listener) {
-        vista.frame.addWindowListener(listener);
+        vista.addWindowListener(listener);
     }
 
     //listener de la lista
@@ -298,7 +298,7 @@ public class FloristeriaControlador implements ActionListener, ListSelectionList
                     }
                     //Con esto cambio el tema, pero no se actualiza automáticamente en las ventanas abiertas
                     // Actualizo la apariencia de todos los componentes Swing de la ventana abierta
-                    SwingUtilities.updateComponentTreeUI(vista.frame);
+                    SwingUtilities.updateComponentTreeUI(vista);
                 } catch (Exception ex) {
                     System.out.println("No se ha podido cambiar al tema oscuro.");
                 }
@@ -309,13 +309,16 @@ public class FloristeriaControlador implements ActionListener, ListSelectionList
     @Override
     public void windowClosing(WindowEvent e) {
         int resp = Util.mensajeConfirmacion("¿Desea cerrar la ventana?", "Salir");
-        if (resp == JOptionPane.OK_OPTION) {
+
+        // FlatLaf devuelve CLOSED_OPTION (0) al pulsar "Sí" en algunos cuadros de diálogo
+        if (resp == JOptionPane.OK_OPTION || resp == JOptionPane.YES_OPTION || resp == JOptionPane.CLOSED_OPTION) {
+
             try {
                 guardarConfiguracion();
-                System.exit(0);
             } catch (IOException ex) {
                 ex.printStackTrace();
             }
+            System.exit(0);
         }
     }
 

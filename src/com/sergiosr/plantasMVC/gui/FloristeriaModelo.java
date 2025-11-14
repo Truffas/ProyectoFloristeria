@@ -62,6 +62,7 @@ public class FloristeriaModelo {
 
     //eliminar adorno
     public void eliminarAdorno(Adorno adorno) {
+
         listaAdornos.remove(adorno);
     }
 

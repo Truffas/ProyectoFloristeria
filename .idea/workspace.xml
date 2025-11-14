@@ -1,12 +1,21 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <project version="4">
+  <component name="ArtifactsWorkspaceSettings">
+    <artifacts-to-build>
+      <artifact name="PlantasMVC:jar" />
+    </artifacts-to-build>
+  </component>
   <component name="ChangeListManager">
     <list default="true" id="0318d235-6cb0-46c6-ab7d-8c09a3f42902" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/.idea/artifacts/PlantasMVC_jar.xml" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/src/META-INF/MANIFEST.MF" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/PlantasMVC/com/sergiosr/plantasMVC/gui/FloristeriaControlador.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantasMVC/com/sergiosr/plantasMVC/gui/FloristeriaControlador.class" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/out/production/PlantasMVC/com/sergiosr/plantasMVC/gui/FloristeriaModelo.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantasMVC/com/sergiosr/plantasMVC/gui/FloristeriaModelo.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/out/production/PlantasMVC/com/sergiosr/plantasMVC/gui/Ventana.class" beforeDir="false" afterPath="$PROJECT_DIR$/out/production/PlantasMVC/com/sergiosr/plantasMVC/gui/Ventana.class" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/plantas.conf" beforeDir="false" afterPath="$PROJECT_DIR$/plantas.conf" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/sergiosr/plantasMVC/gui/FloristeriaControlador.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/sergiosr/plantasMVC/gui/FloristeriaControlador.java" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/src/com/sergiosr/plantasMVC/gui/FloristeriaModelo.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/sergiosr/plantasMVC/gui/FloristeriaModelo.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/com/sergiosr/plantasMVC/gui/Ventana.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/com/sergiosr/plantasMVC/gui/Ventana.java" afterDir="false" />
     </list>
     <option name="EXCLUDED_CONVERTED_TO_IGNORED" value="true" />
@@ -38,8 +47,8 @@
     <property name="aspect.path.notification.shown" value="true" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/libs/flatlaf-3.4.1.jar!/" />
     <property name="nodejs_package_manager_path" value="npm" />
-    <property name="project.structure.last.edited" value="Libraries" />
-    <property name="project.structure.proportion" value="0.0" />
+    <property name="project.structure.last.edited" value="Artifacts" />
+    <property name="project.structure.proportion" value="0.15" />
     <property name="project.structure.side.proportion" value="0.2" />
     <property name="settings.editor.selected.configurable" value="preferences.lookFeel" />
   </component>
@@ -64,7 +73,7 @@
       </list>
     </option>
   </component>
-  <component name="RunManager">
+  <component name="RunManager" selected="JAR Application.PlantasMVC.jar">
     <configuration name="Principal" type="Application" factoryName="Application" temporary="true" nameIsGenerated="true">
       <option name="MAIN_CLASS_NAME" value="com.sergiosr.plantasMVC.Principal" />
       <module name="PlantasMVC" />
@@ -78,8 +87,13 @@
         <option name="Make" enabled="true" />
       </method>
     </configuration>
+    <configuration name="PlantasMVC.jar" type="JarApplication" temporary="true">
+      <option name="JAR_PATH" value="$PROJECT_DIR$/out/artifacts/PlantasMVC_jar/PlantasMVC.jar" />
+      <method v="2" />
+    </configuration>
     <recent_temporary>
       <list>
+        <item itemvalue="JAR Application.PlantasMVC.jar" />
         <item itemvalue="Application.Principal" />
       </list>
     </recent_temporary>
@@ -101,7 +115,8 @@
       <workItem from="1762788401716" duration="4028000" />
       <workItem from="1762797591654" duration="4263000" />
       <workItem from="1762871835787" duration="8463000" />
-      <workItem from="1762957280304" duration="14576000" />
+      <workItem from="1762957280304" duration="14707000" />
+      <workItem from="1763049100056" duration="7474000" />
     </task>
     <servers />
   </component>
@@ -113,7 +128,9 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
